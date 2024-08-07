@@ -237,30 +237,18 @@ param GWP_supply{l in ResourceBalances, p in Period,t in Time[p]} default GWP_su
 param GWP_demand{l in ResourceBalances, p in Period,t in Time[p]} default GWP_demand_cst[l];  
 
 #-VARIABLES
-var GWP_constr>=0;
+var GWP_constr >= 0;
 var GWP_Unit_constr{u in Units} >= 0;
+var GWP_House_constr{h in House} >= 0;
+
 var GWP_op;
-var GWP_House_op{h in House};
-var GWP_House_constr{h in House} >=0; 
+var GWP_Unit_op{l in ResourceBalances, u in UnitsOfLayer[l]} >= 0;
+var GWP_House_op{h in House} >= 0;
+
+var GWP_res;
+var GWP_House_res{h in House};
+
 var GWP_tot;
-
-subject to CO2_construction_unit{u in Units}:
-GWP_Unit_constr[u] = (Units_Use[u]*GWP_unit1[u] + Units_Mult[u]*GWP_unit2[u])/lifetime[u];
-
-subject to CO2_construction_house{h in House}:
-GWP_House_constr[h] = sum{f in FeasibleSolutions}(lambda[f,h] * GWP_house_constr_SPs[f,h]);
-
-subject to CO2_construction:
-GWP_constr = sum {u in Units} GWP_Unit_constr[u] + sum{h in House} GWP_House_constr[h];
-
-subject to Annual_CO2_operation:
-GWP_op = sum{l in ResourceBalances, p in PeriodStandard, t in Time[p]} (GWP_supply[l,p,t] * Network_supply_GWP[l,p,t] - GWP_demand[l,p,t] * Network_demand_GWP[l,p,t]);
-
-subject to Annual_CO2_operation_house{h in House}:
-GWP_House_op[h] = sum{f in FeasibleSolutions, l in ResourceBalances, p in PeriodStandard, t in Time[p]} lambda[f,h]*(GWP_supply[l,p,t]*Grid_supply[l,f,h,p,t] - GWP_demand[l,p,t]*Grid_demand[l,f,h,p,t])* dp[p] * dt[p];
-
-subject to total_GWP:
-GWP_tot = GWP_constr + GWP_op;
 
 #--------------------------------------------------------------------------------------------------------------------#
 #---Energyscope (new)
@@ -270,32 +258,44 @@ GWP_tot = GWP_constr + GWP_op;
 #---CONSTRUCTION GWP
 #-------------------------#
 
-# subject to CO2_construction_unit{u in Units}:
-# GWP_Unit_constr[u] = Units_Use[u]*Units_Mult[u]*GWP_unit2[u]/lifetime[u];
+subject to GWP_construction_unit{u in Units}:
+GWP_Unit_constr[u] = Units_Mult[u]*GWP_unit2[u]/lifetime[u];
 
-# subject to CO2_construction_house{h in House}:
-# GWP_House_constr[h] = sum{f in FeasibleSolutions}(lambda[f,h] * GWP_house_constr_SPs[f,h]);
+subject to GWP_construction_house{h in House}:
+GWP_House_constr[h] = sum{f in FeasibleSolutions}(lambda[f,h] * GWP_house_constr_SPs[f,h]);
 
-# subject to CO2_construction:
-# GWP_constr = sum {u in Units} GWP_Unit_constr[u] + sum{h in House} GWP_House_constr[h];
+subject to GWP_construction:
+GWP_constr = sum {u in Units} GWP_Unit_constr[u] + sum{h in House} GWP_House_constr[h];
 
 #-------------------------#
 #---OPERATION GWP
 #-------------------------#
 
-# subject to LCA_operation_units{k in Lca_kpi, l in ResourceBalances, u in UnitsOfLayer[l]}:
-# lca_op[k,l,u] = sum{p in PeriodStandard, t in Time[p]} Units_Use[u]*(lca_kpi_1[k,u] * Units_supply[l,u,p,t]) * dp[p] * dt[p];
+subject to GWP_operation_unit{l in ResourceBalances, u in UnitsOfLayer[l]}:
+GWP_Unit_op[l,u] = sum{p in PeriodStandard, t in Time[p]} (GWP_unit1[u] * Units_supply[l,u,p,t]) * dp[p] * dt[p];
+
+# subject to GWP_operation_house{h in House}:
+# GWP_House_op[h] = sum{f in FeasibleSolutions}(lambda[f,h] * GWP_house_op_SPs[f,h]);
+
+subject to GWP_operation:
+GWP_op = sum {l in ResourceBalances, u in UnitsOfLayer[l]} GWP_Unit_op[l,u]; # + sum{h in House} GWP_House_op[h];
 
 #-------------------------#
 #---RESOURCES GWP
 #-------------------------#
 
-# subject to CO2_resource_house{h in House}:
-# GWP_house_res[h] = sum{l in ResourceBalances,p in PeriodStandard,t in Time[p]} (GWP_supply[l,p,t]*Grid_supply[l,h,p,t]-GWP_demand[l,p,t]*Grid_demand[l,h,p,t]) *dp[p]*dt[p];
+subject to GWP_resource_house{h in House}:
+GWP_House_res[h] = sum{f in FeasibleSolutions, l in ResourceBalances, p in PeriodStandard, t in Time[p]} lambda[f,h]*(GWP_supply[l,p,t]*Grid_supply[l,f,h,p,t] - GWP_demand[l,p,t]*Grid_demand[l,f,h,p,t])* dp[p] * dt[p];
 
-# subject to CO2_resource:
-# GWP_res = sum{l in ResourceBalances, p in PeriodStandard,t in Time[p]}(GWP_supply[l,p,t]*Network_supply[l,p,t]-GWP_demand[l,p,t]*Network_demand[l,p,t]) *dp[p]*dt[p];
+subject to GWP_resource:
+GWP_res = sum{l in ResourceBalances, p in PeriodStandard,t in Time[p]}(GWP_supply[l,p,t]*Network_supply[l,p,t]-GWP_demand[l,p,t]*Network_demand[l,p,t]) *dp[p]*dt[p];
 
+#-------------------------#
+#---TOTAL GWP
+#-------------------------#
+
+subject to total_GWP:
+GWP_tot = GWP_constr + GWP_op + GWP_res;
 
 set Lca_kpi default {'land_use'};
 param lca_kpi_1{k in Lca_kpi, u in Units} default 0;
@@ -318,27 +318,8 @@ var lca_inv{k in Lca_kpi} default 0;
 var lca_tot{k in Lca_kpi} default 0;
 var lca_tot_house{k in Lca_kpi, h in House} default 0;
 
-
-# subject to LU_inv_cst{k in Lca_kpi, u in Units}:
-# lca_units[k, u] = (Units_Use[u]*lca_kpi_1[k, u] + Units_Mult[u]*lca_kpi_2[k, u])/lifetime[u];
-
-# subject to LCA_construction_house{k in Lca_kpi, h in House}:
-# lca_house_units[k, h] = sum{f in FeasibleSolutions}(lambda[f,h] * lca_house_units_SPs[f,k,h]);
-
-# subject to LCA_construction{k in Lca_kpi}:
-# lca_inv[k] = sum {u in Units} lca_units[k, u] + sum{h in House} lca_house_units[k, h];
-
 subject to complicating_cst_lca{k in Lca_kpi, l in ResourceBalances, p in Period, t in Time[p]}:
 Network_supply_lca[k,l,p,t] - Network_demand_lca[k,l,p,t] = ( sum{f in FeasibleSolutions, h in House}(lambda[f,h] *(Grid_supply[l,f,h,p,t]-Grid_demand[l,f,h,p,t])) +sum {r in Units} Units_demand[l,r,p,t]-sum {b in Units} Units_supply[l,b,p,t])* dp[p] * dt[p];
-
-# subject to LU_op_cst{k in Lca_kpi, l in ResourceBalances}:
-# lca_op[k, l] = sum{p in PeriodStandard,t in Time[p]}(lca_kpi_supply[k,l,p,t]*Network_supply_lca[k,l,p,t] - lca_kpi_demand[k,l,p,t]*Network_demand_lca[k,l,p,t]);
-
-subject to LU_tot_cst{k in Lca_kpi}:
-lca_tot[k] = lca_inv[k] + sum{l in ResourceBalances} lca_res[k, l] + sum{l in ResourceBalances, u in UnitsOfLayer[l]} lca_op[k, l, u];
-
-subject to LU_tot_house_cst{k in Lca_kpi, h in House}:
-lca_tot_house[k, h] = lca_house_units[k, h] + sum{f in FeasibleSolutions,l in ResourceBalances,p in PeriodStandard,t in Time[p]} (lca_kpi_supply[k,l,p,t]*Grid_supply[l,f,h,p,t]-lca_kpi_demand[k,l,p,t]*Grid_demand[l,f,h,p,t])*lambda[f,h]*dp[p]*dt[p];
 
 #--------------------------------------------------------------------------------------------------------------------#
 #---Energyscope (new)
@@ -374,11 +355,18 @@ lca_op[k,l,u] = sum{p in PeriodStandard, t in Time[p]} (lca_kpi_1[k,u] * Units_s
 #---RESOURCES LCA
 #-------------------------#
 
-subject to Resource_Network_Exchange{k in Lca_kpi, l in ResourceBalances, p in Period, t in Time[p]}:
-Network_supply_lca[k,l,p,t] - Network_demand_lca[k,l,p,t] = ( sum{f in FeasibleSolutions, h in House}(lambda[f,h] *(Grid_supply[l,f,h,p,t]-Grid_demand[l,f,h,p,t])) +sum {r in Units} Units_demand[l,r,p,t]-sum {b in Units} Units_supply[l,b,p,t])* dp[p] * dt[p];
-
 subject to LCA_resources{k in Lca_kpi, l in ResourceBalances}:
 lca_res[k,l] = sum{p in PeriodStandard,t in Time[p]} (lca_kpi_supply[k,l,p,t]*Network_supply_lca[k,l,p,t] - lca_kpi_demand[k,l,p,t]*Network_demand_lca[k,l,p,t]);
+
+#-------------------------#
+#---TOTAL LCA
+#-------------------------#
+
+subject to LU_tot_cst{k in Lca_kpi}:
+lca_tot[k] = lca_inv[k] + sum{l in ResourceBalances} lca_res[k, l] + sum{l in ResourceBalances, u in UnitsOfLayer[l]} lca_op[k, l, u];
+
+subject to LU_tot_house_cst{k in Lca_kpi, h in House}:
+lca_tot_house[k, h] = lca_house_units[k, h] + sum{f in FeasibleSolutions,l in ResourceBalances,p in PeriodStandard,t in Time[p]} (lca_kpi_supply[k,l,p,t]*Grid_supply[l,f,h,p,t]-lca_kpi_demand[k,l,p,t]*Grid_demand[l,f,h,p,t])*lambda[f,h]*dp[p]*dt[p];
 
 ######################################################################################################################
 #--------------------------------------------------------------------------------------------------------------------#
