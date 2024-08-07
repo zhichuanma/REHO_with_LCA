@@ -11,7 +11,7 @@ subject to penalties_contraints:
 penalties = sum{h in House} Costs_House_cft[h] +
             penalty_ratio * Costs_grid_connection +
             penalty_ratio * (Costs_op + tau*(Costs_inv + Costs_rep)) +
-            penalty_ratio * (GWP_op + GWP_constr) +
+            penalty_ratio * (GWP_res + GWP_constr+ GWP_op) +
             penalty_ratio * sum{l in ResourceBalances,h in HousesOfLayer[l],p in Period,t in Time[p]} (Grid_supply[l,h,p,t] + Grid_demand[l,h,p,t]) +
             penalty_ratio * sum{l in ResourceBalances,p in Period,t in Time[p]} (Network_supply[l,p,t] + Network_demand[l,p,t]);
 
@@ -25,7 +25,7 @@ minimize TOTEX:
 tau*(Costs_inv + Costs_rep) + Costs_op + Costs_grid_connection + penalties;
 
 minimize GWP:
-GWP_op + GWP_constr + penalties;
+GWP_res + GWP_constr + GWP_op + penalties;
  
 minimize CCEQL:
 lca_tot["CCEQL"]  + penalties;

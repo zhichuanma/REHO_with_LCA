@@ -592,10 +592,6 @@ class SubProblem:
 
         # Set objective function
         for objective_name, objective_formulation in ampl.getObjectives():
-            # print('name')
-            print(objective_name)
-            # print('formulation')
-            # print(objective_formulation)
             objective_formulation.drop()
 
         if 'Objective' in self.scenario_sp:
@@ -760,4 +756,5 @@ def initialize_default_methods(method):
 
 def exitcode_from_ampl(ampl):
     solve_result = ampl.getData('solve_result').toList()[0]
+    print(solve_result)
     return 0 if solve_result == 'solved' else solve_result
