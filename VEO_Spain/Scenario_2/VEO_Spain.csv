@@ -1,0 +1,4 @@
+area_era_m2,id_building,temperature_cooling_supply_C,temperature_cooling_return_C,temperature_heating_supply_C,temperature_heating_return_C,area_facade_m2,area_roof_solar_m2,temperature_interior_C,ratio,status,id_class,thermal_specific_capacity_Wh_m2_K,thermal_transmittance_signature_kW_m2_K,height_m,x,y
+18000,1,7,12,75,55,25932,330,23,0.875/0.125,"['existing', 'existing']",VIII/XII,119.4,0.0009,24.65,1835596.781200,840190.547968
+1459.42,2,7,12,75,55,1235,800,23,1.0,['existing'],VIII,119.4,0.002,11,1835596.781200,840190.547968
+3269.87,3,7,12,75,55,6424,220,23,0.7/0.3,"['existing', 'existing']",I/III,119.4,0.0009,19.5,1835596.781200,840190.547968
