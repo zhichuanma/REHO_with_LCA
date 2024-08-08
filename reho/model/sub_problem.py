@@ -293,12 +293,6 @@ class SubProblem:
         # print(self.parameters_to_ampl['Units_Parameters_lca'])
         return ampl
 
-    # def set_LCIA_data(self, ampl):
-    #     ampl.cd(path_to_ampl_model)
-    #     ampl.readData('techs_lcia_endpoint.dat')
-    #     return ampl
-
-
     def set_emissions_profiles(self, File_ID):
 
         df_em = emissions.return_typical_emission_profiles(self.cluster_sp, File_ID, 'GWP100a', self.local_data["df_Timestamp"],
@@ -756,5 +750,4 @@ def initialize_default_methods(method):
 
 def exitcode_from_ampl(ampl):
     solve_result = ampl.getData('solve_result').toList()[0]
-    print(solve_result)
     return 0 if solve_result == 'solved' else solve_result

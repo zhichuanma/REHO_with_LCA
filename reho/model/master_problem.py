@@ -326,7 +326,7 @@ class MasterProblem:
                 raise Exception('Sub problem did not converge')
 
         print("df_results")
-        print(df_Results)
+        print(df_Results['df_Unit'])
 
         return df_Results, attr
 
@@ -417,6 +417,7 @@ class MasterProblem:
         ampl_MP.readData('frequency_' + self.local_data['File_ID'] + '.dat')
         ampl_MP.cd(path_to_ampl_model)
 
+        print(self.results_SP)
         # -------------------------------------------------------------------------------------------------------------
         # Set Parameters, only bool to choose if including all solutions found also from other Pareto_IDs
         # ------------------------------------------------------------------------------------------------------------
@@ -440,12 +441,18 @@ class MasterProblem:
         # assign data
         MP_parameters = {'Costs_inv_rep_SPs': df_Performance.Costs_inv + df_Performance.Costs_rep,
                          'Costs_ft_SPs': pd.DataFrame(np.round(df_Performance.Costs_ft, 6)).set_axis(['Costs_ft_SPs'], axis=1),
-                         'GWP_house_constr_SPs': pd.DataFrame(df_Performance.GWP_constr).set_axis(['GWP_house_constr_SPs'], axis=1)
+                         'GWP_house_constr_SPs': pd.DataFrame(df_Performance.GWP_constr).set_axis(['GWP_house_constr_SPs'], axis=1),
+                         'GWP_house_op_SPs': pd.DataFrame(df_Performance.GWP_op).set_axis(['GWP_house_op_SPs'], axis=1)
                          }
-
-        print('df_Performance')
-        print(df_Performance.columns)
+        print('df_Performance constr')
+        print(df_Performance.GWP_constr)
         print('---------------------')
+        print('df_Performance op')
+        print(df_Performance.GWP_op)
+        print('---------------------')
+        # print('MP_parameters')
+        # print(MP_parameters.keys())
+        # print('---------------------')
 
         if self.method['save_lca']:
             df_lca_Units = self.return_combined_SP_results(self.results_SP, 'df_lca_Units')

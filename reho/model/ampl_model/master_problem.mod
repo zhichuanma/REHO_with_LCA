@@ -37,7 +37,7 @@ param n_years default 20;                                           #yr
 param i_rate default 0.02;                                          #-
 param tau := i_rate*(1+i_rate)^n_years/(((1+i_rate)^n_years)-1);    #-
 
-
+# set UnitsofHouse{f in FeasibleSolutions, h in House}
 
 
 ######################################################################################################################
@@ -153,7 +153,7 @@ Units_Mult[u] <= Units_Use[u]*Units_Fmax[u];
 param Costs_inv_rep_SPs{f in FeasibleSolutions, h in House} >= 0;
 param Costs_ft_SPs{f in FeasibleSolutions, h in House} >= 0;
 param GWP_house_constr_SPs{f in FeasibleSolutions, h in House} >= 0;
-
+param GWP_house_op_SPs{f in FeasibleSolutions, h in House} >= 0;
 
 #--------------------------------------------------------------------------------------------------------------------#
 #-OPERATIONAL EXPENSES
@@ -274,11 +274,11 @@ GWP_constr = sum {u in Units} GWP_Unit_constr[u] + sum{h in House} GWP_House_con
 subject to GWP_operation_unit{l in ResourceBalances, u in UnitsOfLayer[l]}:
 GWP_Unit_op[l,u] = sum{p in PeriodStandard, t in Time[p]} (GWP_unit1[u] * Units_supply[l,u,p,t]) * dp[p] * dt[p];
 
-# subject to GWP_operation_house{h in House}:
-# GWP_House_op[h] = sum{f in FeasibleSolutions}(lambda[f,h] * GWP_house_op_SPs[f,h]);
+subject to GWP_operation_house{h in House}:
+GWP_House_op[h] = sum{f in FeasibleSolutions}(lambda[f,h] * GWP_house_op_SPs[f,h]);
 
 subject to GWP_operation:
-GWP_op = sum {l in ResourceBalances, u in UnitsOfLayer[l]} GWP_Unit_op[l,u]; # + sum{h in House} GWP_House_op[h];
+GWP_op = sum {l in ResourceBalances, u in UnitsOfLayer[l]} GWP_Unit_op[l,u] + sum{h in House} GWP_House_op[h];
 
 #-------------------------#
 #---RESOURCES GWP
