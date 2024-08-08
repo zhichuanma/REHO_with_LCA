@@ -312,14 +312,16 @@ param lca_kpi_demand{k in Lca_kpi, l in ResourceBalances,p in Period,t in Time[p
 
 var Network_supply_lca {k in Lca_kpi, l in ResourceBalances, p in Period, t in Time[p]} >= 0;
 var Network_demand_lca {k in Lca_kpi, l in ResourceBalances, p in Period, t in Time[p]} >= 0;
-var lca_op{k in Lca_kpi, l in ResourceBalances} default 0;
-var lca_res{k in Lca_kpi, l in ResourceBalances} default 0;
 
 var lca_units{k in Lca_kpi, u in Units} default 0;
 var lca_house_units{k in Lca_kpi, h in House} default 0;
+var lca_constr{k in Lca_kpi} default 0;
+
 var lca_house_op{k in Lca_kpi, h in House} default 0;
-var lca_inv{k in Lca_kpi} default 0;
+var lca_op{k in Lca_kpi, l in ResourceBalances} default 0;
 var LCA_op{k in Lca_kpi} default 0;
+
+var lca_res{k in Lca_kpi, l in ResourceBalances} default 0;
 
 var lca_tot{k in Lca_kpi} default 0;
 var lca_tot_house{k in Lca_kpi, h in House} default 0;
@@ -342,7 +344,7 @@ subject to LCA_construction_house{k in Lca_kpi, h in House}:
 lca_house_units[k, h] = sum{f in FeasibleSolutions}(lambda[f,h] * lca_house_units_SPs[f,k,h]);
 
 subject to LCA_construction{k in Lca_kpi}:
-lca_inv[k] = sum {u in Units} lca_units[k, u] + sum{h in House} lca_house_units[k, h];
+lca_constr[k] = sum {u in Units} lca_units[k, u] + sum{h in House} lca_house_units[k, h];
 
 #-------------------------#
 #---OPERATION LCA
@@ -368,10 +370,10 @@ lca_res[k,l] = sum{p in PeriodStandard,t in Time[p]} (lca_kpi_supply[k,l,p,t]*Ne
 #---TOTAL LCA
 #-------------------------#
 
-subject to LU_tot_cst{k in Lca_kpi}:
-lca_tot[k] = lca_inv[k] + sum{l in ResourceBalances} lca_res[k, l] + LCA_op[k];
+subject to LCA_tot_cst{k in Lca_kpi}:
+lca_tot[k] = lca_constr[k] + sum{l in ResourceBalances} lca_res[k, l] + LCA_op[k];
 
-subject to LU_tot_house_cst{k in Lca_kpi, h in House}:
+subject to LCA_tot_house_cst{k in Lca_kpi, h in House}:
 lca_tot_house[k, h] = lca_house_units[k, h] + lca_house_op[k, h] + sum{f in FeasibleSolutions,l in ResourceBalances,p in PeriodStandard,t in Time[p]} (lca_kpi_supply[k,l,p,t]*Grid_supply[l,f,h,p,t]-lca_kpi_demand[k,l,p,t]*Grid_demand[l,f,h,p,t])*lambda[f,h]*dp[p]*dt[p];
 
 ######################################################################################################################

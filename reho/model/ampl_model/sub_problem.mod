@@ -402,6 +402,7 @@ param lca_kpi_demand{k in Lca_kpi, l in ResourceBalances,p in Period,t in Time[p
 var lca_op{k in Lca_kpi, l in ResourceBalances, u in UnitsOfLayer[l]} default 0;
 var lca_res{k in Lca_kpi, l in ResourceBalances} default 0;
 var lca_units{k in Lca_kpi, u in Units} default 0;
+
 var lca_tot{k in Lca_kpi} default 0;
 var lca_tot_house{k in Lca_kpi, h in House} default 0;
 

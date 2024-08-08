@@ -14,7 +14,7 @@ if __name__ == '__main__':
 
     # Set scenario
     scenario = dict()
-    scenario['Objective'] = 'GWP'
+    scenario['Objective'] = 'CCEQL'
     scenario['name'] = 'totex'
     scenario['exclude_units'] = ['WOOD_Stove', 'NG_Cogeneration']
     scenario['enforce_units'] = []
