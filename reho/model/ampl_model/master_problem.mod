@@ -155,6 +155,7 @@ param Costs_ft_SPs{f in FeasibleSolutions, h in House} >= 0;
 param GWP_house_constr_SPs{f in FeasibleSolutions, h in House} >= 0;
 param GWP_house_op_SPs{f in FeasibleSolutions, h in House} >= 0;
 
+
 #--------------------------------------------------------------------------------------------------------------------#
 #-OPERATIONAL EXPENSES
 #--------------------------------------------------------------------------------------------------------------------#
@@ -302,18 +303,23 @@ param lca_kpi_1{k in Lca_kpi, u in Units} default 0;
 param lca_kpi_2{k in Lca_kpi, u in Units} default 0;
 param lca_kpi_supply_cst{k in Lca_kpi, l in ResourceBalances} default 0.1;
 param lca_kpi_demand_cst{k in Lca_kpi, l in ResourceBalances} default 0.0;
+
 param lca_house_units_SPs{f in FeasibleSolutions, k in Lca_kpi, h in House} default 0;
+param lca_house_operation_SPs{f in FeasibleSolutions, k in Lca_kpi, h in House} default 0;
+
 param lca_kpi_supply{k in Lca_kpi, l in ResourceBalances,p in Period,t in Time[p]} default lca_kpi_supply_cst[k,l];
 param lca_kpi_demand{k in Lca_kpi, l in ResourceBalances,p in Period,t in Time[p]} default lca_kpi_demand_cst[k,l];
 
 var Network_supply_lca {k in Lca_kpi, l in ResourceBalances, p in Period, t in Time[p]} >= 0;
 var Network_demand_lca {k in Lca_kpi, l in ResourceBalances, p in Period, t in Time[p]} >= 0;
-var lca_op{k in Lca_kpi, l in ResourceBalances, u in UnitsOfLayer[l]} default 0;
+var lca_op{k in Lca_kpi, l in ResourceBalances} default 0;
 var lca_res{k in Lca_kpi, l in ResourceBalances} default 0;
 
 var lca_units{k in Lca_kpi, u in Units} default 0;
 var lca_house_units{k in Lca_kpi, h in House} default 0;
+var lca_house_op{k in Lca_kpi, h in House} default 0;
 var lca_inv{k in Lca_kpi} default 0;
+var LCA_op{k in Lca_kpi} default 0;
 
 var lca_tot{k in Lca_kpi} default 0;
 var lca_tot_house{k in Lca_kpi, h in House} default 0;
@@ -342,14 +348,14 @@ lca_inv[k] = sum {u in Units} lca_units[k, u] + sum{h in House} lca_house_units[
 #---OPERATION LCA
 #-------------------------#
 
-#subject to LCA_operation_house{k in Lca_kpi, h in House}:
-#lca_op_house_units[k, h] = sum{f in FeasibleSolutions}(lambda[f,h] * lca_house_units_SPs[f,k,h]);
+subject to LCA_operation_house{k in Lca_kpi, h in House}:
+lca_house_op[k, h] = sum{f in FeasibleSolutions}(lambda[f,h] * lca_house_operation_SPs[f,k,h]);
 
-subject to LCA_operation_units{k in Lca_kpi, l in ResourceBalances, u in UnitsOfLayer[l]}:
-lca_op[k,l,u] = sum{p in PeriodStandard, t in Time[p]} (lca_kpi_1[k,u] * Units_supply[l,u,p,t]) * dp[p] * dt[p];
+subject to LCA_operation_units{k in Lca_kpi, l in ResourceBalances}:
+lca_op[k,l] = sum{u in UnitsOfLayer[l], p in PeriodStandard, t in Time[p]} (lca_kpi_1[k,u] * Units_supply[l,u,p,t]) * dp[p] * dt[p];
 
-#subject to LCA_operation{k in Lca_kpi}:
-#LCA_op[k] = sum {u in Units} lca_op_units[k, u] + sum{h in House} lca_op_house_units[k, h];
+subject to LCA_operation{k in Lca_kpi}:
+LCA_op[k] = sum {l in ResourceBalances} lca_op[k, l] + sum{h in House} lca_house_op[k, h];
 
 #-------------------------#
 #---RESOURCES LCA
@@ -363,10 +369,10 @@ lca_res[k,l] = sum{p in PeriodStandard,t in Time[p]} (lca_kpi_supply[k,l,p,t]*Ne
 #-------------------------#
 
 subject to LU_tot_cst{k in Lca_kpi}:
-lca_tot[k] = lca_inv[k] + sum{l in ResourceBalances} lca_res[k, l] + sum{l in ResourceBalances, u in UnitsOfLayer[l]} lca_op[k, l, u];
+lca_tot[k] = lca_inv[k] + sum{l in ResourceBalances} lca_res[k, l] + LCA_op[k];
 
 subject to LU_tot_house_cst{k in Lca_kpi, h in House}:
-lca_tot_house[k, h] = lca_house_units[k, h] + sum{f in FeasibleSolutions,l in ResourceBalances,p in PeriodStandard,t in Time[p]} (lca_kpi_supply[k,l,p,t]*Grid_supply[l,f,h,p,t]-lca_kpi_demand[k,l,p,t]*Grid_demand[l,f,h,p,t])*lambda[f,h]*dp[p]*dt[p];
+lca_tot_house[k, h] = lca_house_units[k, h] + lca_house_op[k, h] + sum{f in FeasibleSolutions,l in ResourceBalances,p in PeriodStandard,t in Time[p]} (lca_kpi_supply[k,l,p,t]*Grid_supply[l,f,h,p,t]-lca_kpi_demand[k,l,p,t]*Grid_demand[l,f,h,p,t])*lambda[f,h]*dp[p]*dt[p];
 
 ######################################################################################################################
 #--------------------------------------------------------------------------------------------------------------------#
