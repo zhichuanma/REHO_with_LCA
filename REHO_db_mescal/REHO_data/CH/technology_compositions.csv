@@ -1,0 +1,3 @@
+Name,Components
+NG_Cogeneration,"['NG_Cogeneration_Elec', 'NG_Cogeneration_Heat', 'NG_Cogeneration_Common']"
+NG_Cogeneration_district,"['NG_Cogeneration_district_Elec', 'NG_Cogeneration_district_Heat', 'NG_Cogeneration_district_Common']"

@@ -1,0 +1,12 @@
+Flow,CPC
+Natural_gas,['69120: Gas distribution through mains (on own account)']
+Oil,['33370: Fuel oils n.e.c.']
+Wood,['031: Wood in the rough']
+Hydrogen,"['34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c.']"
+Biogas,"['17200: Coal gas, water gas, producer gas and similar gases, other than petroleum gases and other gaseous hydrocarbons']"
+Heat,['17300: Steam and hot water']
+Water,['18000: Natural water']
+Electricity,['17100: Electrical energy']
+Solar,[]
+CONSTRUCTION,"['53290: Other civil engineering works', '53269: Other constructions for manufacturing', '43410: Furnace burners for liquid fuel, for pulverized solid fuel or for gas; mechanical stokers, mechanical grates, [...]', '53241: Long-distance pipelines', '4951: Rail locomotives and locomotive tenders', '49533: Railway or tramway goods vans and wagons, not self-propelled', '49113: Motor cars and other motor vehicles principally designed for the transport of persons (except public-transport[...]', '53262: Power plants']"
+Ambient_Heat,['17300: Steam and hot water']

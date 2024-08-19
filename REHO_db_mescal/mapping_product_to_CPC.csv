@@ -1,0 +1,21 @@
+Name,CPC,Search type,Where
+gas boiler,"['43410: Furnace burners for liquid fuel, for pulverized solid fuel or for gas; mechanical stokers, mechanical grates, [...]]",equals,Product
+"oil boiler, 10kW","['43410: Furnace burners for liquid fuel, for pulverized solid fuel or for gas; mechanical stokers, mechanical grates, [...]]",equals,Product
+"furnace, logs, 6kW","['43410: Furnace burners for liquid fuel, for pulverized solid fuel or for gas; mechanical stokers, mechanical grates, [...]]",equals,Product
+"heat pump, 30kW","['43913: Refrigerating and freezing equipment and heat pumps, except household type equipment']",equals,Product
+"auxiliary heating unit, electric, 5kW",['434: Ovens and furnace burners and parts thereof'],equals,Product
+"photovoltaics, electric installation for 3kWp module, at building",['5461: Electrical installation services'],equals,Product
+"flat plate solar collector, Cu absorber",['43430: Parts for the goods of subclasses 43410 and 43420; parts of non-electric bakery ovens'],equals,Product
+"mini CHP plant, components for electricity only",['53262: Power plants'],equals,Product
+"mini CHP plant, components for heat only",['53262: Power plants'],equals,Product
+"mini CHP plant, common components for heat+electricity",['53262: Power plants'],equals,Product
+"battery, Li-ion, rechargeable, prismatic",['46420: Electric accumulators'],equals,Product
+"hot water tank, 600l","['44825: Central heating boilers, for producing hot water or low pressure steam']",equals,Product
+"natural gas, low pressure",['69120: Gas distribution through mains (on own account)'],equals,Product
+light fuel oil,['33370: Fuel oils n.e.c.'],equals,Product
+"cleft timber, measured as dry mass",['031: Wood in the rough'],equals,Product
+"hydrogen, gaseous","['34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c.']",equals,Product
+biogas,"['17200: Coal gas, water gas, producer gas and similar gases, other than petroleum gases and other gaseous hydrocarbons']",equals,Product
+"heat, future",['17300: Steam and hot water'],equals,Product
+tap water,['18000: Natural water'],equals,Product
+"electricity, low voltage",['17100: Electrical energy'],equals,Product

@@ -1,0 +1,62 @@
+Name,Type,Product,Activity,Location,Database
+NG_Boiler,Construction,gas boiler,gas boiler production,RER,cutoff38
+NG_Boiler,Operation,"heat, central or small-scale, natural gas","heat production, natural gas, at boiler condensing modulating <100kW",CH,cutoff38
+OIL_Boiler,Construction,"oil boiler, 10kW","oil boiler production, 10kW",CH,cutoff38
+OIL_Boiler,Operation,"heat, central or small-scale, other than natural gas","heat production, light fuel oil, at boiler 10kW, non-modulating",CH,cutoff38
+WOOD_Stove,Construction,"furnace, logs, 6kW","furnace production, logs, 6kW",CH,cutoff38
+WOOD_Stove,Operation,"heat, central or small-scale, other than natural gas","heat production, mixed logs, at wood heater 6kW",CH,cutoff38
+HeatPump_Air,Construction,"heat pump, brine-water, 10kW","heat pump production, brine-water, 10kW",CH,cutoff38
+HeatPump_Lake,Construction,"heat pump, brine-water, 10kW","heat pump production, brine-water, 10kW",CH,cutoff38
+HeatPump_Geothermal,Construction,"heat pump, brine-water, 10kW","heat pump production, brine-water, 10kW",CH,cutoff38
+HeatPump_DHN,Construction,"heat pump, 30kW","heat pump production, 30kW",GLO,cutoff38
+HeatPump_Anergy,Construction,"heat pump, brine-water, 10kW","heat pump production, brine-water, 10kW",CH,cutoff38
+HeatPump_Air,Operation,"heat, air-water heat pump 10kW","heat production, air-water heat pump 10kW",CH,cutoff38
+HeatPump_Lake,Operation,"heat, air-water heat pump 10kW","heat production, air-water heat pump 10kW",CH,cutoff38
+HeatPump_Geothermal,Operation,"heat, air-water heat pump 10kW","heat production, air-water heat pump 10kW",CH,cutoff38
+HeatPump_DHN,Operation,"heat, central or small-scale, other than natural gas","heat production, at heat pump 30kW, allocation exergy",CH,cutoff38
+HeatPump_Anergy,Operation,"heat, air-water heat pump 10kW","heat production, air-water heat pump 10kW",CH,cutoff38
+Air_Conditioner_Air,Construction,"heat pump, brine-water, 10kW","heat pump production, brine-water, 10kW",CH,cutoff38
+Air_Conditioner_DHN,Construction,"heat pump, brine-water, 10kW","heat pump production, brine-water, 10kW",CH,cutoff38
+Air_Conditioner_Air,Operation,"heat, air-water heat pump 10kW","heat production, air-water heat pump 10kW",CH,cutoff38
+Air_Conditioner_DHN,Operation,"heat, air-water heat pump 10kW","heat production, air-water heat pump 10kW",CH,cutoff38
+ElectricalHeater_SH,Construction,"auxiliary heating unit, electric, 5kW","auxiliary heating unit production, electric, 5kW",CH,cutoff38
+ElectricalHeater_DHW,Construction,"auxiliary heating unit, electric, 5kW","auxiliary heating unit production, electric, 5kW",CH,cutoff38
+ElectricalHeater_SH,Operation,"heat, solar+electric, multiple-dwelling, for hot water","heat production, at hot water tank, solar+electric, flat plate, multiple dwelling",CH,cutoff38
+ElectricalHeater_DHW,Operation,"heat, solar+electric, multiple-dwelling, for hot water","heat production, at hot water tank, solar+electric, flat plate, multiple dwelling",CH,cutoff38
+PV,Construction,"photovoltaics, electric installation for 3kWp module, at building","photovoltaics, electric installation for 3kWp module, at building",CH,cutoff38
+PV,Operation,"electricity, low voltage","electricity production, photovoltaic, 3kWp flat-roof installation, multi-Si",CH,cutoff38
+ThermalSolar,Construction,"flat plate solar collector, Cu absorber","flat plate solar collector production, Cu absorber",CH,cutoff38
+ThermalSolar,Operation,"heat, central or small-scale, other than natural gas","operation, solar collector system, Cu flat plate collector, multiple dwelling, for hot water",CH,cutoff38
+NG_Cogeneration_Elec,Construction,"mini CHP plant, components for electricity only","mini CHP plant production, components for electricity only",CH,cutoff38
+NG_Cogeneration_Heat,Construction,"mini CHP plant, components for heat only","mini CHP plant production, components for heat only",CH,cutoff38
+NG_Cogeneration_Common,Construction,"mini CHP plant, common components for heat+electricity","mini CHP plant construction, common components for heat+electricity",CH,cutoff38
+NG_Cogeneration,Operation,"electricity, low voltage","heat and power co-generation, natural gas, mini-plant 2KW electrical",CH,cutoff38
+Battery,Construction,"battery, Li-ion, rechargeable, prismatic","battery production, Li-ion, rechargeable, prismatic",GLO,cutoff38
+WaterTankSH,Construction,"hot water tank, 600l","hot water tank production, 600l",CH,cutoff38
+WaterTankDHW,Construction,"hot water tank, 600l","hot water tank production, 600l",CH,cutoff38
+Battery_district,Construction,"battery, Li-ion, rechargeable, prismatic","battery production, Li-ion, rechargeable, prismatic",GLO,cutoff38
+NG_Cogeneration_district_Elec,Construction,"mini CHP plant, components for electricity only","mini CHP plant production, components for electricity only",CH,cutoff38
+NG_Cogeneration_district_Heat,Construction,"mini CHP plant, components for heat only","mini CHP plant production, components for heat only",CH,cutoff38
+NG_Cogeneration_district_Common,Construction,"mini CHP plant, common components for heat+electricity","mini CHP plant construction, common components for heat+electricity",CH,cutoff38
+NG_Cogeneration_district,Operation,"electricity, low voltage","heat and power co-generation, natural gas, mini-plant 2KW electrical",CH,cutoff38
+HeatPump_Geothermal_district,Construction,"heat pump, brine-water, 10kW","heat pump production, brine-water, 10kW",CH,cutoff38
+HeatPump_Geothermal_district,Operation,"heat, air-water heat pump 10kW","heat production, air-water heat pump 10kW",CH,cutoff38
+NG_Boiler_district,Construction,gas boiler,gas boiler production,RER,cutoff38
+NG_Boiler_district,Operation,"heat, central or small-scale, natural gas","heat production, natural gas, at boiler condensing modulating <100kW",CH,cutoff38
+Natural_gas,Resource,"natural gas, low pressure","market for natural gas, low pressure",CH,cutoff38
+Oil,Resource,light fuel oil,market for light fuel oil,CH,cutoff38
+Wood,Resource,"cleft timber, measured as dry mass","market for cleft timber, measured as dry mass",CH,cutoff38
+Hydrogen,Resource,"hydrogen, gaseous","market for hydrogen, gaseous",GLO,cutoff38
+Biogas,Resource,biogas,market for biogas,CH,cutoff38
+Heat,Resource,"heat, future","market for heat, future",GLO,cutoff38
+Electricity,Resource,"electricity, low voltage","market for electricity, low voltage",CH,cutoff38
+Water,Resource,tap water,market for tap water,CH,cutoff38
+Natural_gas,Flow,"natural gas, low pressure","market for natural gas, low pressure",CH,cutoff38
+Oil,Flow,light fuel oil,market for light fuel oil,CH,cutoff38
+Wood,Flow,"cleft timber, measured as dry mass","market for cleft timber, measured as dry mass",CH,cutoff38
+Hydrogen,Flow,"hydrogen, gaseous","market for hydrogen, gaseous",GLO,cutoff38
+Biogas,Flow,biogas,market for biogas,CH,cutoff38
+Heat,Flow,"heat, future","market for heat, future",GLO,cutoff38
+Electricity,Flow,"electricity, low voltage","market for electricity, low voltage",CH,cutoff38
+Water,Flow,tap water,market for tap water,CH,cutoff38
+Ambient_Heat,Flow,"heat, future","market for heat, future",GLO,cutoff38

@@ -1,0 +1,37 @@
+Product,Activity,Location,Database,Amount,Unit,Removed flow product,Removed flow activity,Removed flows location
+"heat, central or small-scale, natural gas","NG_Boiler, Operation",CH,REHO_CH_mescal_v3.8,0.026997245,cubic meter,"natural gas, low pressure","market for natural gas, low pressure",CH
+"heat, central or small-scale, natural gas","NG_Boiler, Operation",CH,REHO_CH_mescal_v3.8,6.468e-07,unit,gas boiler,market for gas boiler,GLO
+"heat, central or small-scale, other than natural gas","OIL_Boiler, Operation",CH,REHO_CH_mescal_v3.8,0.0249148936170213,kilogram,light fuel oil,market for light fuel oil,CH
+"heat, central or small-scale, other than natural gas","OIL_Boiler, Operation",CH,REHO_CH_mescal_v3.8,7.03595744680851e-07,unit,"oil boiler, 10kW","market for oil boiler, 10kW",GLO
+"heat, central or small-scale, other than natural gas","WOOD_Stove, Operation",CH,REHO_CH_mescal_v3.8,0.1078,kilogram,"cleft timber, measured as dry mass","market for cleft timber, measured as dry mass",CH
+"heat, central or small-scale, other than natural gas","WOOD_Stove, Operation",CH,REHO_CH_mescal_v3.8,1.54320987654321e-06,unit,"furnace, logs, 6kW","market for furnace, logs, 6kW",CH
+"heat, air-water heat pump 10kW","HeatPump_Air, Operation",CH,REHO_CH_mescal_v3.8,0.0992,kilowatt hour,"electricity, low voltage","market for electricity, low voltage",CH
+"heat, air-water heat pump 10kW","HeatPump_Air, Operation",CH,REHO_CH_mescal_v3.8,1.11e-06,unit,"heat pump, brine-water, 10kW","market for heat pump, brine-water, 10kW",GLO
+"heat, air-water heat pump 10kW","HeatPump_Lake, Operation",CH,REHO_CH_mescal_v3.8,0.0992,kilowatt hour,"electricity, low voltage","market for electricity, low voltage",CH
+"heat, air-water heat pump 10kW","HeatPump_Lake, Operation",CH,REHO_CH_mescal_v3.8,1.11e-06,unit,"heat pump, brine-water, 10kW","market for heat pump, brine-water, 10kW",GLO
+"heat, air-water heat pump 10kW","HeatPump_Geothermal, Operation",CH,REHO_CH_mescal_v3.8,0.0992,kilowatt hour,"electricity, low voltage","market for electricity, low voltage",CH
+"heat, air-water heat pump 10kW","HeatPump_Geothermal, Operation",CH,REHO_CH_mescal_v3.8,1.11e-06,unit,"heat pump, brine-water, 10kW","market for heat pump, brine-water, 10kW",GLO
+"heat, central or small-scale, other than natural gas","HeatPump_DHN, Operation",CH,REHO_CH_mescal_v3.8,0.0617,kilowatt hour,"electricity, low voltage","market for electricity, low voltage",CH
+"heat, central or small-scale, other than natural gas","HeatPump_DHN, Operation",CH,REHO_CH_mescal_v3.8,3.47e-08,unit,"heat pump, 30kW","market for heat pump, 30kW",GLO
+"heat, air-water heat pump 10kW","HeatPump_Anergy, Operation",CH,REHO_CH_mescal_v3.8,0.0992,kilowatt hour,"electricity, low voltage","market for electricity, low voltage",CH
+"heat, air-water heat pump 10kW","HeatPump_Anergy, Operation",CH,REHO_CH_mescal_v3.8,1.11e-06,unit,"heat pump, brine-water, 10kW","market for heat pump, brine-water, 10kW",GLO
+"heat, air-water heat pump 10kW","Air_Conditioner_Air, Operation",CH,REHO_CH_mescal_v3.8,0.0992,kilowatt hour,"electricity, low voltage","market for electricity, low voltage",CH
+"heat, air-water heat pump 10kW","Air_Conditioner_Air, Operation",CH,REHO_CH_mescal_v3.8,1.11e-06,unit,"heat pump, brine-water, 10kW","market for heat pump, brine-water, 10kW",GLO
+"heat, air-water heat pump 10kW","Air_Conditioner_DHN, Operation",CH,REHO_CH_mescal_v3.8,0.0992,kilowatt hour,"electricity, low voltage","market for electricity, low voltage",CH
+"heat, air-water heat pump 10kW","Air_Conditioner_DHN, Operation",CH,REHO_CH_mescal_v3.8,1.11e-06,unit,"heat pump, brine-water, 10kW","market for heat pump, brine-water, 10kW",GLO
+"heat, solar+electric, multiple-dwelling, for hot water","ElectricalHeater_SH, Operation",CH,REHO_CH_mescal_v3.8,0.23457,kilowatt hour,"electricity, low voltage","market for electricity, low voltage",CH
+"heat, solar+electric, multiple-dwelling, for hot water","ElectricalHeater_SH, Operation",CH,REHO_CH_mescal_v3.8,6.5545e-08,unit,"auxiliary heating unit, electric, 5kW","market for auxiliary heating unit, electric, 5kW",GLO
+"heat, solar+electric, multiple-dwelling, for hot water","ElectricalHeater_DHW, Operation",CH,REHO_CH_mescal_v3.8,0.23457,kilowatt hour,"electricity, low voltage","market for electricity, low voltage",CH
+"heat, solar+electric, multiple-dwelling, for hot water","ElectricalHeater_DHW, Operation",CH,REHO_CH_mescal_v3.8,6.5545e-08,unit,"auxiliary heating unit, electric, 5kW","market for auxiliary heating unit, electric, 5kW",GLO
+"electricity, low voltage","NG_Cogeneration, Operation",CH,REHO_CH_mescal_v3.8,1.47009942080173e-06,unit,"mini CHP plant, common components for heat+electricity","mini CHP plant construction, common components for heat+electricity",CH
+"electricity, low voltage","NG_Cogeneration, Operation",CH,REHO_CH_mescal_v3.8,1.47009942080173e-06,unit,"mini CHP plant, components for heat only","mini CHP plant production, components for heat only",CH
+"electricity, low voltage","NG_Cogeneration, Operation",CH,REHO_CH_mescal_v3.8,0.271186021177224,cubic meter,"natural gas, low pressure","market for natural gas, low pressure",CH
+"electricity, low voltage","NG_Cogeneration, Operation",CH,REHO_CH_mescal_v3.8,1.47009942080173e-06,unit,"mini CHP plant, components for electricity only","mini CHP plant production, components for electricity only",CH
+"electricity, low voltage","NG_Cogeneration_district, Operation",CH,REHO_CH_mescal_v3.8,1.47009942080173e-06,unit,"mini CHP plant, common components for heat+electricity","mini CHP plant construction, common components for heat+electricity",CH
+"electricity, low voltage","NG_Cogeneration_district, Operation",CH,REHO_CH_mescal_v3.8,1.47009942080173e-06,unit,"mini CHP plant, components for heat only","mini CHP plant production, components for heat only",CH
+"electricity, low voltage","NG_Cogeneration_district, Operation",CH,REHO_CH_mescal_v3.8,0.271186021177224,cubic meter,"natural gas, low pressure","market for natural gas, low pressure",CH
+"electricity, low voltage","NG_Cogeneration_district, Operation",CH,REHO_CH_mescal_v3.8,1.47009942080173e-06,unit,"mini CHP plant, components for electricity only","mini CHP plant production, components for electricity only",CH
+"heat, air-water heat pump 10kW","HeatPump_Geothermal_district, Operation",CH,REHO_CH_mescal_v3.8,0.0992,kilowatt hour,"electricity, low voltage","market for electricity, low voltage",CH
+"heat, air-water heat pump 10kW","HeatPump_Geothermal_district, Operation",CH,REHO_CH_mescal_v3.8,1.11e-06,unit,"heat pump, brine-water, 10kW","market for heat pump, brine-water, 10kW",GLO
+"heat, central or small-scale, natural gas","NG_Boiler_district, Operation",CH,REHO_CH_mescal_v3.8,0.026997245,cubic meter,"natural gas, low pressure","market for natural gas, low pressure",CH
+"heat, central or small-scale, natural gas","NG_Boiler_district, Operation",CH,REHO_CH_mescal_v3.8,6.468e-07,unit,gas boiler,market for gas boiler,GLO
