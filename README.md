@@ -63,8 +63,8 @@ similarity. The output would be the input when generating LCA database with doub
   2. Set up the environment:
   - Install necessary module with pip
     ```sh
-       pip install -r requirements.txt
-       ```
+    pip install -r requirements.txt
+    ```
   - If using `virtualenv`:
     ```sh
     python -m venv env
@@ -76,8 +76,11 @@ similarity. The output would be the input when generating LCA database with doub
 **Description**: This is the main tool I used for the optimization.
 
 **Environment**:
-
-Please refer to [Getting Started](https://reho.readthedocs.io/en/main/sections/5_Getting_started.html) for further 
+  1. Navigate to the directory:
+     ```sh
+     cd path/to/REHO
+     ```
+  2. Please refer to [Getting Started](https://reho.readthedocs.io/en/main/sections/5_Getting_started.html) for further 
 information
 
 ### 3. Folder 3: REHO_db_mescal
@@ -87,7 +90,7 @@ information
 **Environment**:
 - **Environment Setup**:
   1. Navigate to the directory:
-     ```sh
+     ```shell
      cd path/to/REHO_db_mescal
      ```
   2. Set up the environment:
