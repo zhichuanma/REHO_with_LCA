@@ -30,6 +30,12 @@ Zhichuan MA zhichuan.ma@polytechnique.edu
 
 This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
 
+## Preparations
+
+The database will be generated based on [Ecoinvent](https://ecoinvent.org/database-login/). 
+Be sure you have access to the `ecospold` datasets which we need to use when generating new LCA datasets.
+Also, basic knowledge for [brightway](https://docs.brightway.dev/en/latest/) is needed.
+
 ## Installation
 
 Clone the repo:
@@ -89,6 +95,9 @@ information
      ```shell
      $ pip install mescal
      ```
+  3. This filefolder is also based on brightway, for the installation, please refer to 
+  [brightway](https://docs.brightway.dev/en/latest/) to learn how to build corresponding environments.
+  
 ### Additional Notes
 
 - Ensure that the correct environment is activated when working within each specific directory.
