@@ -35,7 +35,7 @@ if __name__ == '__main__':
             scenario = {
                 'Objective': indicator,
                 'name': 'totex',
-                'exclude_units': ['Battery', 'NG_Cogeneration'],
+                'exclude_units': [],
                 'enforce_units': []
             }
 
